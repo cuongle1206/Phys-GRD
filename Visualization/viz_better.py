@@ -149,8 +149,8 @@ if __name__ == "__main__":
     sm              = trimesh.creation.uv_sphere(radius=0.012)
     sm.visual.vertex_colors = [0.9, 0.1, 0.1, 1.0]
 
-    result2 = torch.load("mesh_s004_taichi.pt")
-    result1 = torch.load("mesh_s004.pt")
+    result2 = torch.load("./Visualization/mesh_s004_taichi.pt")
+    result1 = torch.load("./Visualization/mesh_s004.pt")
     
     for ri, result in enumerate([result1, result2]):
         

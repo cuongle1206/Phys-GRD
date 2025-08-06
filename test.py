@@ -114,10 +114,6 @@ for file in pbar:
     grf_R = grf[:,1,-1]
     grf_sum = grf[...,-1].sum(-1) * (1e3/weight)
 
-    # fig     = plt.figure()
-    # ax1     = fig.add_subplot(211)
-    # ax2     = fig.add_subplot(212)
-
     fig     = plt.figure(figsize=(4,12))
     ax1     = fig.add_subplot(311)
     ax2     = fig.add_subplot(312)
@@ -133,47 +129,10 @@ for file in pbar:
         z0      = z_true[0].clone() # Initial solution
         v0      = torch.zeros_like(z0)
         pred_grf_sum = GRFs_pred[...,-1].sum(-1)
-        # z, v, res_grf = [], [], []
-        # z.append(z0)
-        # v.append(v0)
-        # res_grf.append(grf_sum[0])
-        # dt      = 1/90
-        # for f in range(seq_len-1):
-        #     # rgt     = 50 * (z_true[f+1] - z[-1]) - 12 * v[-1]
-        #     rgt     = pred_grf_sum[f]
-        #     vt      = v[-1] + (rgt - 1) * dt
-        #     zt      = z[-1] + vt * dt
-        #     res_grf.append(rgt)
-        #     # v.append(vt)
-        #     # z.append(zt)
-        #     if f % 125 == 0:
-        #         v.append(v0)
-        #         z.append(z_true[f])
-        #     else:
-        #         v.append(vt)
-        #         z.append(zt)
-        # z_sim   = torch.stack(z, dim=0)
 
     vGRF_L.append(metrics._mse_loss(GRFs_pred[:,0,-1], grf[:,0,-1]))
     vGRF_R.append(metrics._mse_loss(GRFs_pred[:,1,-1], grf[:,1,-1]))
     # vRPE.append(recon_metric(z_sim, z_true)*1e3)
-
-    # ax1.set_xlim([0, seq_len])
-    # ax1.set_ylim([-0., 3.0])
-    # ax1.set_title("vGRF")
-    # ax1.set_ylabel("N/kg")
-    # ax1.set_xticks([])
-    # ax1.plot(grf_sum)
-    # ax1.plot(res_grf)
-
-    # ax2.set_xlim([0, seq_len])
-    # ax2.set_ylim([0., 2])
-    # ax2.set_title("z position")
-    # ax2.set_ylabel("m")
-    # ax2.set_xlabel("t")
-    # ax2.plot(z_true, label="force plate")
-    # ax2.plot(z_sim, label="physics simulation")
-    # ax2.legend(loc='lower right')
 
     ax1.set_xlim([0, seq_len])
     ax1.set_ylim([-0., 3.0])

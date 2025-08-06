@@ -223,8 +223,6 @@ class Trainer(util.Timeline):
     def _test(self):
         print("Test #{}".format(self.iter))
 		
-		# Modified for GroundLink
-		# Make predictions
         vGRF_L, vGRF_R, vRPE = [], [], []
         recon_metric = torch.nn.MSELoss(reduction='mean')
         with torch.no_grad():
@@ -267,9 +265,6 @@ class Trainer(util.Timeline):
 
 def vis_sample(sample_id):
     device  = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    # Load the dataset
-    # trainset = torch.load(os.path.join(folder_path, 'trainset.pt'))
-    # validset = torch.load(os.path.join(folder_path, 'validset.pt'))
     testset  = torch.load(os.path.join(folder_path, 'testset.pt'))
 
     body_pose = testset["poses"][sample_id].float().to(device)
@@ -340,35 +335,6 @@ def vis_sample(sample_id):
     ax3.plot(z_plot)
     print(torch.norm((z_plot - z_true)))
     plt.savefig(f'./animations/tmp_imgs/frame.png', transparent=True, dpi=100, format='png', facecolor='white', bbox_inches='tight')
-
-    # for f in range(200):
-    #     ax1.cla()
-    #     ax1.set_xlim([-1.,1.])
-    #     ax1.set_ylim([-1.,1.])
-    #     ax1.set_zlim([0,1.8])
-    #     ax1.scatter(joints[f,:22,0], joints[f,:22,1], joints[f,:22,2], color='k')
-    #     for k in range(len(parent)):
-    #         ax1.plot([joints[f,parent[k],0], joints[f,child[k],0]],
-    #                  [joints[f,parent[k],1], joints[f,child[k],1]], 
-    #                  [joints[f,parent[k],2], joints[f,child[k],2]],
-    #                  color = 'cyan', linestyle = '-', linewidth = 3)
-        
-    #     # ax2.cla()
-    #     # ax2.set_xlim([0, seq_len])
-    #     # ax2.set_ylim([-0., 2.5])
-    #     # ax2.plot(body_grf_sum[:f,2])
-
-    #     # ax3.cla()
-    #     # ax3.set_xlim([0, seq_len])
-    #     # ax3.set_ylim([0., 1.8])
-    #     # ax3.plot(x_true[:,2])
-
-    #     plt.savefig(f'./animations/tmp_imgs/frame_{f}.png', transparent=True, dpi=100, format='png',
-    #                 facecolor='white', bbox_inches='tight')
-    #     image   = Image.open(f'./animations/tmp_imgs/frame_{f}.png')
-    #     frames.append(image)
-    # name = "./animations/test_sample_" + str(0) + ".gif"
-    # frames[0].save(name, save_all=True, append_images=frames[1:], duration=60, loop=0)
     plt.close()
 
 
