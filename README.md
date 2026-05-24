@@ -1,15 +1,13 @@
 
-# Phys-GRD
+# Official implementation of PhysGRD
+
+Physics-informed Ground Reaction Dynamics from Human Motion Capture
 
 <div align="center">
 <img src="animations/Teaser.png" width="1000" alt="logo"/>
 </div>
 
-Official implementation of Physics-informed Ground Reaction Dynamics from Human Motion Capture
-
-[![Paper](https://img.shields.io/badge/arXiv-2507.01340-red)](https://arxiv.org/abs/2507.01340)
-
-The repository is based on from the [GroundLink](https://github.com/hanxingjian/GroundLink) dataset.
+[![Paper](https://img.shields.io/badge/arXiv-2507.01340-red)](https://arxiv.org/abs/2507.01340) [![IEEE](https://img.shields.io/badge/IEEE-HSI_2025-blue?logo=openreview)](https://ieeexplore.ieee.org/document/11142382)
 
 ## Installation
 
@@ -60,3 +58,7 @@ If you find our work helpful, please cite the paper as
   year      = {2025}
 }
 ```
+
+Acknowledgements
+
+The repository is based on the [GroundLink](https://github.com/hanxingjian/GroundLink) dataset, and many thanks to the authors of GroundLink.
